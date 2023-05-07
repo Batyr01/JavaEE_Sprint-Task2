@@ -6,6 +6,23 @@ public class Users {
     String email;
     String password;
     String fullName;
+    int role;
+
+    public Users(Long id, String email, String password, String fullName, int role) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+        this.role = role;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 
     public Long getId() {
         return id;
@@ -42,10 +59,4 @@ public class Users {
     public Users() {
     }
 
-    public Users(Long id, String email, String password, String fullName) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.fullName = fullName;
-    }
 }

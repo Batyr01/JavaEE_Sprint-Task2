@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import kz.sprintask2.db.DBConnection;
 import kz.sprintask2.db.Users;
 
@@ -18,17 +19,18 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("/login.jsp").forward(request,response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        Users user = DBConnection.getUser(email, password);
-        if (user != null){
-            request.setAttribute("userInfo", user);
-            request.getRequestDispatcher("/profile.jsp").forward(request,response);
-        }
-        request.setAttribute("errorMessage", "Invalid email or password");
-        request.getRequestDispatcher("/login.jsp").forward(request,response);
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        Users user = DBConnection.getUser(email);
+        if(user!=null && user.getPassword().equals(password)){
+            HttpSession session = req.getSession();
+            session.setAttribute("currentUser", user);
+            resp.sendRedirect("/profile");
+        }else{
+            resp.sendRedirect("/login?error");
+        }
     }
 }

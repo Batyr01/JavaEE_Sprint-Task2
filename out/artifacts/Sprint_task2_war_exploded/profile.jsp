@@ -8,13 +8,11 @@
 </head>
 <body>
     <%@include file="navbar.jsp"%>
-    <%
-        Users user = (Users) request.getAttribute("userInfo");
-    %>
-    <div class="container mt-4">
-        <div class="row text-center">
-            <h3>Hello <%=user.getFullName()%></h3>
-            <p>This is your profile page</p>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12 mx-auto text-center">
+                <h1>Hello <%=currentUser!=null?currentUser.getFullName():""%></h1>
+            </div>
         </div>
     </div>
 </body>

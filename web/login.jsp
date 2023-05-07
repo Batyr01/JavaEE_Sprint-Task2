@@ -18,11 +18,23 @@
                         </div>
                     </div>
                     <%
-                        String error = (String) request.getAttribute("errorMessage");
-                        if (error != null){
+                        String error = request.getParameter("error");
+                        if(error!=null){
                     %>
-                    <div class="alert alert-danger" role="alert">
-                        <%=error%>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Incorrect email or password!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <%
+                        }
+                    %>
+                    <%
+                        String success = request.getParameter("success");
+                        if(success!=null){
+                    %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        User created successfully please Sing In!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <%
                         }

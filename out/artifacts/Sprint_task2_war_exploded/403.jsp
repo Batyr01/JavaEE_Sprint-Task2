@@ -7,13 +7,15 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
-    <%@include file="navbar.jsp"%>
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-12 mx-auto text-center">
-                <h1>Hello <%=currentUser!=null?currentUser.getFullName():""%></h1>
-            </div>
+<%@include file="navbar.jsp"%>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <h1 class="text-center">
+                403 Access Forbidden
+            </h1>
         </div>
     </div>
+</div>
 </body>
 </html>
